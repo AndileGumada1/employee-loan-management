@@ -27,10 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/swagger-resources/**",
                                 "/configuration/security",
                                 "/swagger-ui.html",
-                                "/webjars/**")
+                                "/webjars/**",
+                                "/**")
                         .permitAll()
                         .anyRequest()
-                        .authenticated().and()
+                        .authenticated().and().formLogin().disable() // <-- this will disable the login route
                         .formLogin();
     }
 
