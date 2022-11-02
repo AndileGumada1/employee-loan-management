@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} [%-6p] %C{1}.%M(%F:%L) – %m%n</Property>
+        <Property name="APP_LOG_ROOT">/logs/kcb_test</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+
+        <RollingFile name="atlaserror"
+                     fileName="${APP_LOG_ROOT}/ATLAS_LOAN_error.log"
+                     filePattern="${APP_LOG_ROOT}/ATLAS_LOAN_error.%d{yyyy-MM-dd}-%i.log">
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+
+        <RollingFile name="atlasinfo"
+                     fileName="${APP_LOG_ROOT}/ATLAS_LOAN_info.log"
+                     filePattern="${APP_LOG_ROOT}/ATLAS_LOAN_info.%d{yyyy-MM-dd}-%i.log">
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+
+        <RollingFile name="atlasdebug"
+                     fileName="${APP_LOG_ROOT}/ATLAS_LOAN_debug.log"
+                     filePattern="${APP_LOG_ROOT}/ATLAS_LOAN_debug.%d{yyyy-MM-dd}-%i.log">
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1000MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+
+        <Logger name="com.atlas.loan.application" additivity="false">
+            <AppenderRef ref="atlaserror" />
+            <AppenderRef ref="atlasinfo" />
+            <!--   <AppenderRef ref="atlasdebug" /> -->
+            <AppenderRef ref="console" />
+        </Logger>
+
+        <Root level="trace">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
