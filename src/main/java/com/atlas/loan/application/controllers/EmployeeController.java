@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("api/v1/employees")
 @AllArgsConstructor
 @Slf4j
-@CrossOrigin("https://employee-loan-ui.web.app/")
 public class EmployeeController {
 
     private final EmployeeServiceImpl employeeService;

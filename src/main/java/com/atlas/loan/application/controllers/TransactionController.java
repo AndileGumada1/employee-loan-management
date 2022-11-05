@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("https://employee-loan-ui.web.app/")
 @RequestMapping("api/v1/transactions")
 @AllArgsConstructor
 @Slf4j

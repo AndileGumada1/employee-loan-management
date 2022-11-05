@@ -17,7 +17,7 @@ import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
-@CrossOrigin("https://employee-loan-ui.web.app/")
+
 @RestController
 @RequestMapping("api/v1/loans")
 @AllArgsConstructor
